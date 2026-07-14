@@ -1,54 +1,52 @@
 from dataclasses import dataclass
+from pathlib import Path
 
 
-@dataclass
+@dataclass(frozen=True)
 class TradingConfig:
+    """
+    Central configuration for the AI Trading System.
+    """
 
     # ==========================
-    # MARKET
+    # Market
     # ==========================
-
-    SYMBOL = "^NSEI"
-
-    INTERVAL = "5m"
-
-    PERIOD = "5d"
+    SYMBOL: str = "^NSEI"
+    PERIOD: str = "5d"
+    INTERVAL: str = "5m"
 
     # ==========================
-    # EMA
+    # Indicators
     # ==========================
-
-    EMA_FAST = 20
-
-    EMA_SLOW = 50
-
-    ATR_PERIOD = 14
+    EMA_FAST: int = 20
+    EMA_SLOW: int = 50
+    ATR_PERIOD: int = 14
 
     # ==========================
-    # RISK
+    # Trading
     # ==========================
+    CAPITAL: float = 100000.0
+    LOT_SIZE: int = 65
+    MAX_LOTS: int = 3
 
-    CAPITAL = 100000
-
-    RISK_PER_TRADE = 0.02
-
-    MAX_DAILY_LOSS = 5000
-
-    LOT_SIZE = 65
-
-    MAX_LOTS = 3
+    RISK_PER_TRADE: float = 0.02
+    MAX_DAILY_LOSS: float = 5000.0
 
     # ==========================
     # AI
     # ==========================
-
-    MIN_CONFIDENCE = 80
+    MIN_CONFIDENCE: int = 80
 
     # ==========================
-    # REFRESH
+    # Refresh
     # ==========================
+    REFRESH_SECONDS: int = 30
 
-    REFRESH_SECONDS = 30
+    # ==========================
+    # Directories
+    # ==========================
+    LOG_DIR: Path = Path("logs")
+    DATA_DIR: Path = Path("data")
 
 
 config = TradingConfig()
