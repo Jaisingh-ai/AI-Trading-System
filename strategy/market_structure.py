@@ -20,7 +20,15 @@ class MarketStructure:
                 and current > self.df["High"].iloc[i + 1]
                 and current > self.df["High"].iloc[i + 2]
             ):
-                swing_highs.append(i)
+
+                swing_highs.append(
+                    {
+                        "index": i,
+                        "time": self.df.index[i],
+                        "price": float(current),
+                        "type": "Swing High"
+                    }
+                )
 
         return swing_highs
 
@@ -38,7 +46,15 @@ class MarketStructure:
                 and current < self.df["Low"].iloc[i + 1]
                 and current < self.df["Low"].iloc[i + 2]
             ):
-                swing_lows.append(i)
+
+                swing_lows.append(
+                    {
+                        "index": i,
+                        "time": self.df.index[i],
+                        "price": float(current),
+                        "type": "Swing Low"
+                    }
+                )
 
         return swing_lows
 
