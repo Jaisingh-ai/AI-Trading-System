@@ -20,13 +20,27 @@ class MarketStructure:
                 and current > self.df["High"].iloc[i + 1]
                 and current > self.df["High"].iloc[i + 2]
             ):
-
                 swing_highs.append(i)
 
         return swing_highs
 
     def find_swing_lows(self):
-        pass
+
+        swing_lows = []
+
+        for i in range(2, len(self.df) - 2):
+
+            current = self.df["Low"].iloc[i]
+
+            if (
+                current < self.df["Low"].iloc[i - 1]
+                and current < self.df["Low"].iloc[i - 2]
+                and current < self.df["Low"].iloc[i + 1]
+                and current < self.df["Low"].iloc[i + 2]
+            ):
+                swing_lows.append(i)
+
+        return swing_lows
 
     def detect_trend(self):
         pass
