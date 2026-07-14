@@ -1,18 +1,10 @@
 from data.market_data import MarketData
+from indicators.trend import TrendIndicator
 
 market = MarketData()
 
-market.download()
+df = market.download()
 
-print("Validation :", market.validate_data())
+trend = TrendIndicator(df)
 
-snapshot = market.get_snapshot()
-
-print("\n========== MARKET SNAPSHOT ==========")
-print("Symbol         :", snapshot.symbol)
-print("Current Price  :", snapshot.current_price)
-print("Today's Open   :", snapshot.today_open)
-print("Previous High  :", snapshot.previous_high)
-print("Previous Low   :", snapshot.previous_low)
-print("Previous Close :", snapshot.previous_close)
-print("Gap %          :", snapshot.gap_percent)
+print("Trend :", trend.get_trend())
